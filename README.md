@@ -68,6 +68,8 @@ Los scripts principales se encuentran en `Assets/Scripts` y contienen la lógica
 
 ## Notas
 
+Falta concretar algunas cosas, como el mobimiento de la camara con el mouse, y el spawn de obstaculos no funciona como se deveria 
+
 
 
 
