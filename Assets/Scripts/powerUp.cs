@@ -1,14 +1,40 @@
+using System.Collections;
 using UnityEngine;
 
 public class powerUp : MonoBehaviour
 {
+    private MeshRenderer meshRenderer;
+    private Collider powerUPCollider;
+
+
+    private void Start()
+    {
+        meshRenderer = GetComponent<MeshRenderer>();
+        powerUPCollider = GetComponent<Collider>();
+    }
     private void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Player"))
         {
-            // Aquí puedes agregar la lógica para aplicar el efecto del power-up al jugador
-            Debug.Log("Power-up recogido por el jugador");
-            Destroy(gameObject); // Destruye el power-up después de ser recogido
+            playerMov movimiento = other.GetComponent<playerMov>();
+
+            if (movimiento!=null)
+            {
+                movimiento.PowerUp();
+                StartCoroutine(Reaparecer());
+            }
+            
         }
+    }
+
+    private IEnumerator Reaparecer()
+    {
+        meshRenderer.enabled = false;
+        powerUPCollider.enabled = false;
+        
+        yield return new WaitForSeconds(15f);
+        
+        meshRenderer.enabled = true;
+        powerUPCollider.enabled = true;
     }
 }

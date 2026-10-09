@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class playerMov : MonoBehaviour
@@ -22,5 +23,17 @@ public class playerMov : MonoBehaviour
 
         transform.Translate(movimiento * velocidad * Time.deltaTime);
         
+    }
+
+    public void PowerUp()
+    {
+        StartCoroutine(PowerUPTemporal());
+    }
+
+    private IEnumerator PowerUPTemporal()
+    {
+        velocidad*=3f;
+        yield return new WaitForSeconds(15f);
+        velocidad/=3f;
     }
 }
